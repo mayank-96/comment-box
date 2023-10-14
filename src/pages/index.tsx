@@ -1,10 +1,14 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
 import { useEffect, useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
+import Basic from '@/stories/Basic';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+});
 
 export default function Home() {
   const [activeTheme, setActiveTheme] = useState('light');
@@ -24,11 +28,12 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={`${styles.main} ${poppins.className}`}>
         <ThemeToggle
           activeTheme={activeTheme}
           setActiveTheme={setActiveTheme}
         />
+        <Basic />
       </main>
     </>
   );
