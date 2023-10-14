@@ -1,0 +1,10 @@
+.toggleButton {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  outline: none;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
