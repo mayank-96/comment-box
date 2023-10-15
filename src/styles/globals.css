@@ -8,6 +8,7 @@ body,
 body[data-theme='light'] {
   --color-background: #ffffff;
   --color-primary-6: #625df5;
+  --color-primary-2: #a259fe;
   --color-primary-3: #ff7162;
   --color-primary-4: #0dcf82;
   --color-secondary-3: #ffd166;
@@ -45,4 +46,8 @@ body {
 
 h1 {
   color: var(--color-text-secondary);
+}
+
+textarea::placeholder {
+  color: var(--color-neutral-6); /* Set your desired color here */
 }

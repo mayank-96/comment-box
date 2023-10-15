@@ -37,9 +37,6 @@ const Overlay = forwardRef(
 
         let left, top;
 
-        console.log(triggerRect, 'trigger');
-        console.log(overlayRect, 'overlay');
-
         switch (placement) {
           case 'top':
             left =

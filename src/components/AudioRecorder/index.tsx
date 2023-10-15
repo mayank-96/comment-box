@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useRef } from 'react';
 
 const AudioRecorderContext = createContext<any>('');
 
@@ -14,9 +14,17 @@ const AudioRecorder = ({
   children,
   ...props
 }: any) => {
-  const containerWidth = 500;
+  const waveRef = useRef(null);
+  let containerWidth = 100;
+
+  if (waveRef.current) {
+    // @ts-ignore
+    const containerRect = waveRef.current.getBoundingClientRect();
+    containerWidth = containerRect.width;
+  }
+
   const barWidth = 3;
-  const barGap = 2;
+  const barGap = 1;
   const n = data.length;
   const totalBarWidth = barWidth * n + barGap * (n - 1);
   let transformX = 0;
@@ -30,11 +38,10 @@ const AudioRecorder = ({
       style={{
         padding: 8,
         display: 'flex',
-        gap: 28,
         alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 999,
-        backgroundColor: 'gray',
+        gap: 6,
+        borderRadius: 32,
+        backgroundColor: 'var(--color-neutral-9)',
       }}
     >
       <AudioRecorderContext.Provider
@@ -47,6 +54,7 @@ const AudioRecorder = ({
           barGap,
           barWidth,
           transformX,
+          waveRef,
         }}
       >
         {children}

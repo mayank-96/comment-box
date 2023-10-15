@@ -1,16 +1,29 @@
 import React from 'react';
 import Button from '../Button';
 import { useAudioRecorderContext } from '.';
+import { PlayCircle, XCircle } from 'lucide-react';
 
 function AudioRecorderTrigger() {
   const { handleToggle, startRecording } = useAudioRecorderContext();
   return (
-    <Button
+    <div
       onClick={handleToggle}
-      style={{ width: 80, alignItems: 'center', justifyContent: 'center' }}
+      style={{ display: 'flex', alignItems: 'center' }}
     >
-      {startRecording ? 'Pause' : 'Start'}
-    </Button>
+      {startRecording ? (
+        <XCircle
+          width={18}
+          height={18}
+          style={{ color: 'var(--color-primary-3)' }}
+        />
+      ) : (
+        <PlayCircle
+          width={18}
+          height={18}
+          style={{ color: 'var(--color-primary-6)' }}
+        />
+      )}
+    </div>
   );
 }
 

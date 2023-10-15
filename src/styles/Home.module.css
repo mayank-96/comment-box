@@ -2,8 +2,4 @@
   position: relative;
   min-height: 100vh;
   background-color: var(--color-background);
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
 }

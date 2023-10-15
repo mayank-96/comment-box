@@ -1,10 +1,29 @@
 import React, { forwardRef } from 'react';
-import styles from '@/styles/Button.module.css';
 
 const Button = forwardRef<HTMLButtonElement>(
-  ({ children, ...props }: any, ref: any) => {
+  ({ children, isDisabled, ...props }: any, ref: any) => {
     return (
-      <button className={styles.button} ref={ref} {...props}>
+      <button
+        ref={ref}
+        {...props}
+        style={{
+          margin: 0,
+          border: 0,
+          paddingBlock: 4,
+          paddingInline: 8,
+          borderRadius: 24,
+          gap: 4,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#e7e8fa',
+          color: 'var(--color-primary-6)',
+          cursor: isDisabled ? 'not-allowed' : 'pointer',
+          opacity: isDisabled ? 0.5 : 1,
+        }}
+        disabled={isDisabled}
+      >
         {children}
       </button>
     );
