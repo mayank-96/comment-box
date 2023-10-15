@@ -1,13 +1,13 @@
 import React from 'react';
-import { useSelectContext } from '.';
+import { useSelectContext } from './Select';
 
-function SelectText({ ...props }: any) {
+const SelectText = ({ ...props }: any) => {
   const { defaultSelectText, handleOpen, triggerRef } = useSelectContext();
   return (
     <div onClick={handleOpen} ref={triggerRef} {...props}>
       {defaultSelectText}
     </div>
   );
-}
+};
 
-export default SelectText;
+export { SelectText };

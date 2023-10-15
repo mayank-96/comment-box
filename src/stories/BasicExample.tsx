@@ -1,5 +1,5 @@
-import Button from '@/components/Button';
-import CommentBox from '@/components/CommentBox';
+import { CommentBox } from '@/components/composite';
+import { Button } from '@/components/primitives';
 import { MessageCircle } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 

@@ -1,19 +1,19 @@
 import React, { createContext, useContext } from 'react';
-import Overlay from '../Overlay';
-import { useSelectContext } from '.';
+import { Overlay } from '@/components/primitives';
+import { useSelectContext } from './Select';
 
 const SelectOptionContext = createContext<any>('');
 
-export function useSelectOptionContext() {
+const useSelectOptionContext = () => {
   return useContext(SelectOptionContext);
-}
+};
 
-function SelectOptions({
+const SelectOptions = ({
   children,
   itemStyling,
   activeItemStyling,
   ...props
-}: any) {
+}: any) => {
   const { isOpen, triggerRef, handleClose } = useSelectContext();
   return (
     <Overlay
@@ -32,6 +32,6 @@ function SelectOptions({
       </SelectOptionContext.Provider>
     </Overlay>
   );
-}
+};
 
-export default SelectOptions;
+export { SelectOptions, useSelectOptionContext };

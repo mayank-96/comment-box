@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 const Button = forwardRef<HTMLButtonElement>(
-  ({ children, isDisabled, ...props }: any, ref: any) => {
+  ({ children, isDisabled, style, ...props }: any, ref: any) => {
     return (
       <button
         ref={ref}
@@ -21,6 +21,7 @@ const Button = forwardRef<HTMLButtonElement>(
           color: 'var(--color-primary-6)',
           cursor: isDisabled ? 'not-allowed' : 'pointer',
           opacity: isDisabled ? 0.5 : 1,
+          ...style,
         }}
         disabled={isDisabled}
       >
@@ -31,4 +32,4 @@ const Button = forwardRef<HTMLButtonElement>(
 ) as any;
 
 Button.displayName = 'Button';
-export default Button;
+export { Button };

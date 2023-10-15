@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAudioRecorderContext } from '.';
+import { useAudioRecorderContext } from './AudioRecorder';
 
-function AudioRecorderWave({ ...props }: any) {
-  const { containerWidth, barGap, data, barWidth, transformX, waveRef } =
+const AudioRecorderWave = ({ style, ...props }: any) => {
+  const { barGap, data, barWidth, transformX, waveRef } =
     useAudioRecorderContext();
 
   return (
@@ -11,12 +11,13 @@ function AudioRecorderWave({ ...props }: any) {
       style={{
         height: 24,
         flex: 1,
-        // width: containerWidth,
         display: 'flex',
         alignItems: 'center',
         gap: barGap,
         overflow: 'hidden',
+        ...style,
       }}
+      {...props}
     >
       {data.map((item: any, index: any) => {
         return (
@@ -38,6 +39,6 @@ function AudioRecorderWave({ ...props }: any) {
       })}
     </div>
   );
-}
+};
 
-export default AudioRecorderWave;
+export { AudioRecorderWave };

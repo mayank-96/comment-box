@@ -1,12 +1,11 @@
 import React, { useState, useRef, createContext, useContext } from 'react';
 
 const SelectContext = createContext<any>('');
-
-export function useSelectContext() {
+const useSelectContext = () => {
   return useContext(SelectContext);
-}
+};
 
-function Select({ children, defaultValue, handleChange, ...props }: any) {
+const Select = ({ children, defaultValue, handleChange, ...props }: any) => {
   const [defaultSelectText, setDefaultSelectText] = useState(
     defaultValue ?? 'Select'
   );
@@ -40,6 +39,6 @@ function Select({ children, defaultValue, handleChange, ...props }: any) {
       </SelectContext.Provider>
     </div>
   );
-}
+};
 
-export default Select;
+export { Select, useSelectContext };

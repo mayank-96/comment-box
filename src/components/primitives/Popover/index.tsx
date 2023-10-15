@@ -1,11 +1,11 @@
 import React, { createContext, forwardRef, useContext } from 'react';
-import Overlay from '../Overlay';
+import { Overlay } from '@/components/primitives';
 
 const PopoverContext = createContext<any>('');
 
-export function usePopoverContext() {
+const usePopoverContext = () => {
   return useContext(PopoverContext);
-}
+};
 
 const Popover = forwardRef(
   (
@@ -40,4 +40,4 @@ const Popover = forwardRef(
 
 Popover.displayName = 'Popover';
 
-export default Popover;
+export { Popover, usePopoverContext };

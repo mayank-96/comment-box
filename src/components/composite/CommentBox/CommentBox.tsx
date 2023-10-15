@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Popover } from '../Popover';
-import Button from '../Button';
+import {
+  Button,
+  Popover,
+  Divider,
+  Textarea,
+  Icon,
+} from '@/components/primitives';
 import {
   Check,
   ChevronDown,
@@ -8,23 +13,24 @@ import {
   Circle,
   Copy,
   Flag,
-  Laptop,
   MessageCircle,
   Mic,
   Monitor,
   MoreHorizontal,
   Paperclip,
   Smile,
-  Star,
   Video,
 } from 'lucide-react';
-import AudioRecorder from '../AudioRecorder';
-import AudioRecorderTrigger from '../AudioRecorder/AudioRecorderTrigger';
-import AudioRecorderWave from '../AudioRecorder/AudioRecorderWave';
-import AudioRecorderTime from '../AudioRecorder/AudioRecorderTime';
-import AudioRecorderDelete from '../AudioRecorder/AudioRecorderDelete';
+import {
+  AudioRecorder,
+  AudioRecorderTrigger,
+  AudioRecorderWave,
+  AudioRecorderTime,
+  AudioRecorderDelete,
+  CommentCard,
+} from '@/components/composite';
 
-function CommentBox({ isOpen, handleClose, triggerRef }: any) {
+const CommentBox = ({ isOpen, handleClose, triggerRef }: any) => {
   const [data, setData] = useState<any>([]);
   const [startRecording, setStartRecording] = useState(false);
   const [showAudioRecording, setShowAudioRecording] = useState(false);
@@ -93,7 +99,7 @@ function CommentBox({ isOpen, handleClose, triggerRef }: any) {
         >
           <div style={{ gap: 8, display: 'flex' }}>
             <Button>
-              <Circle width={16} height={16} />
+              <Icon as={Circle} size={16} />
               <div
                 style={{
                   fontSize: '12px',
@@ -103,11 +109,11 @@ function CommentBox({ isOpen, handleClose, triggerRef }: any) {
               >
                 Open
               </div>
-              <ChevronDown width={16} height={16} />
+              <Icon as={ChevronDown} size={16} />
             </Button>
             <Button>
-              <Flag width={16} height={16} />
-              <ChevronDown width={16} height={16} />
+              <Icon as={Flag} size={16} />
+              <Icon as={ChevronDown} size={16} />
             </Button>
           </div>
           <div
@@ -118,106 +124,33 @@ function CommentBox({ isOpen, handleClose, triggerRef }: any) {
               alignItems: 'center',
             }}
           >
-            <MoreHorizontal
-              width={16}
-              height={16}
+            <Icon
+              as={MoreHorizontal}
+              size={16}
               style={{ color: 'var(--color-neutral-3)' }}
             />
-            <Copy
-              width={16}
-              height={16}
+
+            <Icon
+              as={Copy}
+              size={16}
               style={{ color: 'var(--color-neutral-3)' }}
             />
-            <Check
-              width={16}
-              height={16}
+
+            <Icon
+              as={Check}
+              size={16}
               style={{ color: 'var(--color-neutral-3)' }}
             />
           </div>
         </div>
-        <div
-          style={{
-            backgroundColor: 'var(--color-neutral-8',
-            height: 1,
-          }}
+        <Divider />
+        <CommentCard
+          profileUrl='www.image.link'
+          profileName='Me'
+          commentTime='7 min. ago'
+          device='Desktop'
+          comment='Change the logo'
         />
-        <div
-          style={{
-            display: 'flex',
-            gap: 10,
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              gap: 8,
-            }}
-          >
-            <div>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 8,
-                }}
-              >
-                <div
-                  style={{
-                    width: 32,
-                    height: 32,
-                    backgroundColor: 'var(--color-primary-2)',
-                    borderRadius: 999,
-                  }}
-                />
-                <div
-                  style={{
-                    marginTop: 4,
-                    display: 'flex',
-                    gap: 10,
-                    flexDirection: 'column',
-                  }}
-                >
-                  <div style={{ fontWeight: 600, fontSize: '16px' }}>Me</div>
-                  <div
-                    style={{
-                      display: 'flex',
-                      gap: 10,
-                      alignItems: 'center',
-                      color: 'var(--color-neutral-6)',
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: '11px',
-                        fontWeight: 400,
-                        lineHeight: '17px',
-                      }}
-                    >
-                      7 min. ago
-                    </div>
-                    <div
-                      style={{ display: 'flex', alignItems: 'center', gap: 4 }}
-                    >
-                      <Laptop width={12} height={12} />
-                      <div
-                        style={{
-                          fontSize: '11px',
-                          fontWeight: 400,
-                          lineHeight: '17px',
-                        }}
-                      >
-                        Desktop
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ fontWeight: 300, fontSize: '16px' }}>
-                    Change the logo
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div></div>
-          </div>
-        </div>
         <div
           style={{
             border: '1px solid var(--color-neutral-9)',
@@ -228,20 +161,7 @@ function CommentBox({ isOpen, handleClose, triggerRef }: any) {
             flexDirection: 'column',
           }}
         >
-          <textarea
-            placeholder='Comment or record'
-            style={{
-              border: 'none',
-              overflow: 'auto',
-              outline: 'none',
-              boxShadow: 'none',
-              resize: 'none',
-              width: '100%',
-              fontFamily: 'Poppins, sans-serif',
-              fontWeight: 300,
-              fontSize: 14,
-            }}
-          />
+          <Textarea placeholder='Comment or record' />
           {showAudioRecording && (
             <AudioRecorder
               startRecording={startRecording}
@@ -255,12 +175,7 @@ function CommentBox({ isOpen, handleClose, triggerRef }: any) {
               <AudioRecorderDelete />
             </AudioRecorder>
           )}
-          <div
-            style={{
-              backgroundColor: 'var(--color-neutral-8',
-              height: 1,
-            }}
-          />
+          <Divider />
           <div
             style={{
               display: 'flex',
@@ -269,39 +184,35 @@ function CommentBox({ isOpen, handleClose, triggerRef }: any) {
             }}
           >
             <div style={{ display: 'flex', gap: 16 }}>
-              <Smile
-                width={20}
-                height={20}
+              <Icon
+                as={Smile}
+                size={20}
                 style={{ color: 'var(--color-neutral-6)' }}
               />
-
-              <Paperclip
-                width={20}
-                height={20}
+              <Icon
+                as={Paperclip}
+                size={20}
                 style={{ color: 'var(--color-neutral-6)' }}
               />
-
-              <Mic
+              <Icon
+                as={Mic}
+                size={20}
                 onClick={() => setShowAudioRecording((prev) => !prev)}
-                width={20}
-                height={20}
                 style={{ color: 'var(--color-neutral-6)', cursor: 'pointer' }}
               />
-
-              <Video
-                width={20}
-                height={20}
+              <Icon
+                as={Video}
+                size={20}
                 style={{ color: 'var(--color-neutral-6)' }}
               />
-
-              <Monitor
-                width={20}
-                height={20}
+              <Icon
+                as={Monitor}
+                size={20}
                 style={{ color: 'var(--color-neutral-6)' }}
               />
             </div>
             <Button isDisabled={startRecording}>
-              <ChevronRight height={16} width={16} style={{ marginBlock: 4 }} />
+              <Icon as={ChevronRight} size={16} style={{ marginBlock: 4 }} />
             </Button>
           </div>
         </div>
@@ -315,12 +226,12 @@ function CommentBox({ isOpen, handleClose, triggerRef }: any) {
             fontWeight: 500,
           }}
         >
-          <MessageCircle width={20} height={20} strokeWidth={2.5} />
+          <Icon as={MessageCircle} size={20} strokeWidth={2.5} />
           <div>All comments</div>
         </div>
       </div>
     </Popover>
   );
-}
+};
 
-export default CommentBox;
+export { CommentBox };

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAudioRecorderContext } from '.';
+import { useAudioRecorderContext } from './AudioRecorder';
 import { secondsToMMSS } from '@/utils/time';
 
-function AudioRecorderTime() {
+const AudioRecorderTime = ({ style, ...props }: any) => {
   const { data } = useAudioRecorderContext();
   return (
     <div
@@ -10,13 +10,14 @@ function AudioRecorderTime() {
         width: 30,
         fontWeight: 300,
         fontSize: 12,
-
         color: 'var(--color-neutral-4)',
+        ...style,
       }}
+      {...props}
     >
       {secondsToMMSS(data.length / 10)}
     </div>
   );
-}
+};
 
-export default AudioRecorderTime;
+export { AudioRecorderTime };

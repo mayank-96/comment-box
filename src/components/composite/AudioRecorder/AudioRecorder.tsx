@@ -2,9 +2,9 @@ import React, { createContext, useContext, useRef } from 'react';
 
 const AudioRecorderContext = createContext<any>('');
 
-export function useAudioRecorderContext() {
+const useAudioRecorderContext = () => {
   return useContext(AudioRecorderContext);
-}
+};
 
 const AudioRecorder = ({
   startRecording,
@@ -12,6 +12,9 @@ const AudioRecorder = ({
   handleToggle,
   handleReset,
   children,
+  style,
+  barWidth = 3,
+  barGap = 1,
   ...props
 }: any) => {
   const waveRef = useRef(null);
@@ -23,8 +26,6 @@ const AudioRecorder = ({
     containerWidth = containerRect.width;
   }
 
-  const barWidth = 3;
-  const barGap = 1;
   const n = data.length;
   const totalBarWidth = barWidth * n + barGap * (n - 1);
   let transformX = 0;
@@ -42,7 +43,9 @@ const AudioRecorder = ({
         gap: 6,
         borderRadius: 32,
         backgroundColor: 'var(--color-neutral-9)',
+        ...style,
       }}
+      {...props}
     >
       <AudioRecorderContext.Provider
         value={{
@@ -50,7 +53,6 @@ const AudioRecorder = ({
           handleToggle,
           startRecording,
           handleReset,
-          containerWidth,
           barGap,
           barWidth,
           transformX,
@@ -63,4 +65,4 @@ const AudioRecorder = ({
   );
 };
 
-export default AudioRecorder;
+export { AudioRecorder, useAudioRecorderContext };

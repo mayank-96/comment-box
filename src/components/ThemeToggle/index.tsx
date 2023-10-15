@@ -1,19 +1,29 @@
-import styles from '@/styles/ThemeToggle.module.css';
 import { Sun, Moon } from 'lucide-react';
+import { Button, Icon } from '@/components/primitives';
 
 const ThemeToggle = ({ activeTheme, setActiveTheme }: any) => {
   const inactiveTheme = activeTheme === 'light' ? 'dark' : 'light';
 
   return (
-    <button
-      className={`${styles.toggleButton}`}
-      aria-label={`Change to ${inactiveTheme} mode`}
-      title={`Change to ${inactiveTheme} mode`}
-      type='button'
+    <Button
       onClick={() => setActiveTheme(inactiveTheme)}
+      style={{
+        position: 'absolute',
+        top: 30,
+        right: 30,
+        outline: 'none',
+        border: 'none',
+        padding: 8,
+        borderRadius: 4,
+        cursor: 'pointer',
+      }}
     >
-      {activeTheme === 'dark' ? <Moon size={22} /> : <Sun size={22} />}
-    </button>
+      {activeTheme === 'dark' ? (
+        <Icon as={Moon} size={22} />
+      ) : (
+        <Icon as={Sun} size={22} />
+      )}
+    </Button>
   );
 };
 

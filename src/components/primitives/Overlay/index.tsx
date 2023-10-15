@@ -9,9 +9,9 @@ import React, {
 
 const OverlayContext = createContext('');
 
-export function useOverlayContext() {
+const useOverlayContext = () => {
   return useContext(OverlayContext);
-}
+};
 
 const Overlay = forwardRef(
   (
@@ -159,4 +159,4 @@ const Overlay = forwardRef(
 
 Overlay.displayName = 'Overlay';
 
-export default Overlay;
+export { Overlay, useOverlayContext };

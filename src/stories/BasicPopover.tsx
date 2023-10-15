@@ -1,16 +1,20 @@
-import Button from '@/components/Button';
-import { Popover } from '@/components/Popover';
-import Select from '@/components/Select';
-import SelectItem from '@/components/Select/SelectItem';
-import SelectOptions from '@/components/Select/SelectOptions';
-import SelectText from '@/components/Select/SelectText';
+import {
+  Button,
+  Popover,
+  Select,
+  SelectItem,
+  SelectOptions,
+  SelectText,
+} from '@/components/primitives';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '@/styles/Select.module.css';
-import AudioRecorder from '@/components/AudioRecorder';
-import AudioRecorderTrigger from '@/components/AudioRecorder/AudioRecorderTrigger';
-import AudioRecorderWave from '@/components/AudioRecorder/AudioRecorderWave';
-import AudioRecorderTime from '@/components/AudioRecorder/AudioRecorderTime';
-import AudioRecorderDelete from '@/components/AudioRecorder/AudioRecorderDelete';
+import {
+  AudioRecorder,
+  AudioRecorderTrigger,
+  AudioRecorderWave,
+  AudioRecorderTime,
+  AudioRecorderDelete,
+} from '@/components/composite';
 
 function Basic() {
   const [visible, setVisible] = useState(false);
