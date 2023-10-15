@@ -139,6 +139,9 @@ const Overlay = forwardRef(
             left: overlayPosition.left,
             top: overlayPosition.top,
           }}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
         >
           {children}
         </div>

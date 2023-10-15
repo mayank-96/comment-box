@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import { Popover } from '@/components/Popover';
+import Select from '@/components/Select';
 import React, { useState, useRef } from 'react';
 
 function Basic() {
@@ -9,6 +10,15 @@ function Basic() {
   const handleClose = () => {
     setVisible(false);
   };
+
+  const [defaultSelectText, setDefaultSelectText] = useState(
+    'Please select an option'
+  );
+  const [countryList] = useState([
+    { id: 1, name: 'Australia' },
+    { id: 2, name: 'Brazil' },
+    { id: 3, name: 'China' },
+  ]);
 
   return (
     <div>
@@ -27,12 +37,13 @@ function Basic() {
             height: 300,
             width: 300,
             backgroundColor: 'pink',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
           }}
         >
-          Hello
+          <Select defaultText={defaultSelectText} optionsList={countryList} />
+          <div>
+            asdsadas asd asd sad as dsa dsa das dsa d as das das ad as das das
+            ds ad sa{' '}
+          </div>
         </div>
       </Popover>
     </div>

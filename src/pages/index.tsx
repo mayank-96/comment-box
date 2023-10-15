@@ -3,7 +3,7 @@ import { Poppins } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
 import { useEffect, useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
-import Basic from '@/stories/Basic';
+import BasicPopover from '@/stories/BasicPopover';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -33,7 +33,7 @@ export default function Home() {
           activeTheme={activeTheme}
           setActiveTheme={setActiveTheme}
         />
-        <Basic />
+        <BasicPopover />
       </main>
     </>
   );

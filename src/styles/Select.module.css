@@ -1,0 +1,20 @@
+.customSelectContainer {
+}
+
+.selectedText {
+}
+
+.selectedText::after {
+}
+
+.selectedText.active::after {
+}
+
+.selectOptions {
+}
+
+.customSelectOption {
+}
+
+.customSelectOption:hover {
+}
