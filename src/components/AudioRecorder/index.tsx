@@ -1,8 +1,4 @@
 import React, { createContext, useContext } from 'react';
-import AudioRecorderTrigger from './AudioRecorderTrigger';
-import AudioRecorderDelete from './AudioRecorderDelete';
-import AudioRecorderTime from './AudioRecorderTime';
-import AudioRecorderWave from './AudioRecorderWave';
 
 const AudioRecorderContext = createContext<any>('');
 
@@ -15,6 +11,7 @@ const AudioRecorder = ({
   data,
   handleToggle,
   handleReset,
+  children,
   ...props
 }: any) => {
   const containerWidth = 500;
@@ -52,10 +49,7 @@ const AudioRecorder = ({
           transformX,
         }}
       >
-        <AudioRecorderTrigger />
-        <AudioRecorderWave />
-        <AudioRecorderTime />
-        <AudioRecorderDelete />
+        {children}
       </AudioRecorderContext.Provider>
     </div>
   );
