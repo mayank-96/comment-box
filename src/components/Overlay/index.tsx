@@ -37,7 +37,9 @@ const Overlay = forwardRef(
 
         let left, top;
 
-        // Calculate the position based on the placement
+        console.log(triggerRect, 'trigger');
+        console.log(overlayRect, 'overlay');
+
         switch (placement) {
           case 'top':
             left =
@@ -112,7 +114,6 @@ const Overlay = forwardRef(
             break;
 
           default:
-            // Default placement (you can adjust this)
             left = triggerRect.left;
             top = triggerRect.bottom;
         }
@@ -122,7 +123,7 @@ const Overlay = forwardRef(
     }, [isOpen, triggerRef, placement, offset, overlayRef]);
 
     if (!isOpen) {
-      return null; // Render nothing when isOpen is false
+      return null;
     }
 
     return (
@@ -146,6 +147,7 @@ const Overlay = forwardRef(
             position: 'absolute',
             left: overlayPosition.left,
             top: overlayPosition.top,
+            opacity: overlayRef.current ? 1 : 0,
           }}
           onClick={(e) => {
             e.stopPropagation();
