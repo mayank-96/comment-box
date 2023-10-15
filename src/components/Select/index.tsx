@@ -1,71 +1,48 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, createContext, useContext } from 'react';
 import styles from '@/styles/Select.module.css';
 
-function Select(props: any) {
-  const [defaultSelectText, setDefaultSelectText] = useState('');
+const SelectContext = createContext<any>('');
+
+export function useSelectContext() {
+  return useContext(SelectContext);
+}
+
+function Select({ children, defaultValue, ...props }: any) {
+  const [defaultSelectText, setDefaultSelectText] = useState(
+    defaultValue ?? 'Select'
+  );
   const [showOptionList, setShowOptionList] = useState(false);
 
   const selectRef = useRef(null);
+  const triggerRef = useRef(null);
 
-  useEffect(() => {
-    // Add Event Listener to handle the click that happens outside
-    // the Custom Select Container
-    document.addEventListener('mousedown', handleClickOutside);
-
-    setDefaultSelectText(props.defaultText);
-
-    return () => {
-      // Remove the event listener on component unmounting
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [props.defaultText]);
-
-  const handleClickOutside = (e) => {
-    if (
-      selectRef.current &&
-      !selectRef.current.contains(e.target) &&
-      !e.target.classList.contains('custom-select-option') &&
-      !e.target.classList.contains('selected-text')
-    ) {
-      setShowOptionList(false);
-    }
+  const handleClickOutside = (e: any) => {
+    setShowOptionList(false);
   };
 
   const handleListDisplay = () => {
     setShowOptionList((prevState) => !prevState);
   };
 
-  const handleOptionClick = (e) => {
+  const handleOptionClick = (e: any) => {
     setDefaultSelectText(e.target.getAttribute('data-name'));
-    setShowOptionList(false);
+    handleClickOutside(e);
   };
-
-  const { optionsList } = props;
 
   return (
     <div className={`${styles.customSelectContainer}`} ref={selectRef}>
-      <div
-        className={
-          showOptionList ? styles.selectedTextActive : styles.selectedText
-        }
-        onClick={handleListDisplay}
+      <SelectContext.Provider
+        value={{
+          defaultSelectText,
+          handleListDisplay,
+          triggerRef,
+          showOptionList,
+          handleClickOutside,
+          handleOptionClick,
+        }}
       >
-        {defaultSelectText}
-      </div>
-      {showOptionList && (
-        <ul className={`${styles.selectoptions}`}>
-          {optionsList.map((option: any) => (
-            <li
-              className={`${styles.customSelectOption}`}
-              data-name={option.name}
-              key={option.id}
-              onClick={handleOptionClick}
-            >
-              {option.name}
-            </li>
-          ))}
-        </ul>
-      )}
+        {children}
+      </SelectContext.Provider>
     </div>
   );
 }

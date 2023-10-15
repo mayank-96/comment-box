@@ -1,7 +1,11 @@
 import Button from '@/components/Button';
 import { Popover } from '@/components/Popover';
 import Select from '@/components/Select';
+import SelectItem from '@/components/Select/SelectItem';
+import SelectOptions from '@/components/Select/SelectOptions';
+import SelectText from '@/components/Select/SelectText';
 import React, { useState, useRef } from 'react';
+import styles from '@/styles/Select.module.css';
 
 function Basic() {
   const [visible, setVisible] = useState(false);
@@ -11,18 +15,9 @@ function Basic() {
     setVisible(false);
   };
 
-  const [defaultSelectText, setDefaultSelectText] = useState(
-    'Please select an option'
-  );
-  const [countryList] = useState([
-    { id: 1, name: 'Australia' },
-    { id: 2, name: 'Brazil' },
-    { id: 3, name: 'China' },
-  ]);
-
   return (
     <div>
-      <Button onClick={() => setVisible(!visible)} ref={triggerRef}>
+      {/* <Button onClick={() => setVisible(!visible)} ref={triggerRef}>
         Toggle Popover
       </Button>
       <Popover
@@ -34,18 +29,24 @@ function Basic() {
       >
         <div
           style={{
-            height: 300,
-            width: 300,
             backgroundColor: 'pink',
+            padding: 80,
           }}
-        >
-          <Select defaultText={defaultSelectText} optionsList={countryList} />
-          <div>
+        > */}
+      <Select defaultValue='high'>
+        <SelectText />
+        <SelectOptions className={`${styles.selectOptions}`}>
+          <SelectItem value='high'>High</SelectItem>
+          <SelectItem value='low'>Low</SelectItem>
+          <SelectItem value='medium'>Medium</SelectItem>
+        </SelectOptions>
+      </Select>
+      {/* <div style={{ width: 200 }}>
             asdsadas asd asd sad as dsa dsa das dsa d as das das ad as das das
-            ds ad sa{' '}
+            ds ad sa
           </div>
         </div>
-      </Popover>
+      </Popover> */}
     </div>
   );
 }

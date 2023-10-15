@@ -1,16 +1,21 @@
 .customSelectContainer {
+  width: 200px;
+  background-color: purple;
 }
 
 .selectedText {
+  width: 100%;
+  background-color: yellow;
 }
 
-.selectedText::after {
-}
-
-.selectedText.active::after {
+.selectedTextActive {
+  background-color: green;
 }
 
 .selectOptions {
+  list-style-type: none;
+  width: 200px;
+  background-color: red;
 }
 
 .customSelectOption {

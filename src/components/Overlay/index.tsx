@@ -20,7 +20,7 @@ const Overlay = forwardRef(
       triggerRef,
       placement,
       handleClose,
-      offset,
+      offset = 0,
       style,
       children,
       ...props
@@ -35,18 +35,24 @@ const Overlay = forwardRef(
         const triggerRect = triggerRef.current.getBoundingClientRect();
         const overlayRect = overlayRef.current.getBoundingClientRect();
 
+        console.log('trigger', triggerRect);
+        console.log('overlay', overlayRect);
+
         let left, top;
 
         // Calculate the position based on the placement
         switch (placement) {
           case 'top':
             left =
-              triggerRect.left + triggerRect.width / 2 - overlayRect.width / 2;
+              triggerRect.left -
+              overlayRect.left +
+              triggerRect.width / 2 -
+              overlayRect.width / 2;
             top = triggerRect.top - overlayRect.height - offset;
             break;
 
           case 'right':
-            left = triggerRect.right + offset;
+            left = triggerRect.right - overlayRect.left + offset;
             top =
               triggerRect.top + triggerRect.height / 2 - overlayRect.height / 2;
             break;
@@ -59,47 +65,52 @@ const Overlay = forwardRef(
 
           case 'bottom':
             left =
-              triggerRect.left + triggerRect.width / 2 - overlayRect.width / 2;
+              triggerRect.left -
+              overlayRect.left +
+              triggerRect.width / 2 -
+              overlayRect.width / 2;
             top = triggerRect.bottom + offset;
             break;
 
           case 'top right':
-            left = triggerRect.left;
+            left = triggerRect.left - overlayRect.left;
             top = triggerRect.top - overlayRect.height - offset;
             break;
 
           case 'top left':
-            left = triggerRect.right - overlayRect.width;
+            left = triggerRect.right - overlayRect.left - overlayRect.width;
             top = triggerRect.top - overlayRect.height - offset;
             break;
 
           case 'bottom right':
-            left = triggerRect.left;
+            left = triggerRect.left - overlayRect.left;
             top = triggerRect.bottom + offset;
             break;
 
           case 'bottom left':
-            left = triggerRect.right - overlayRect.width;
+            left = triggerRect.right - overlayRect.left - overlayRect.width;
             top = triggerRect.bottom + offset;
             break;
 
           case 'right top':
-            left = triggerRect.right + offset;
+            left = triggerRect.right - overlayRect.left + offset;
             top = triggerRect.top - overlayRect.height + triggerRect.height;
             break;
 
           case 'right bottom':
-            left = triggerRect.right + offset;
+            left = triggerRect.right - overlayRect.left + offset;
             top = triggerRect.bottom - triggerRect.height;
             break;
 
           case 'left top':
-            left = triggerRect.left - overlayRect.width - offset;
+            left =
+              triggerRect.left - overlayRect.left - overlayRect.width - offset;
             top = triggerRect.top - overlayRect.height + triggerRect.height;
             break;
 
           case 'left bottom':
-            left = triggerRect.left - overlayRect.width - offset;
+            left =
+              triggerRect.left - overlayRect.left - overlayRect.width - offset;
             top = triggerRect.bottom - triggerRect.height;
             break;
 
@@ -111,7 +122,7 @@ const Overlay = forwardRef(
 
         setOverlayPosition({ left, top });
       }
-    }, [isOpen, triggerRef, placement, offset]);
+    }, [isOpen, triggerRef, placement, offset, overlayRef]);
 
     if (!isOpen) {
       return null; // Render nothing when isOpen is false
