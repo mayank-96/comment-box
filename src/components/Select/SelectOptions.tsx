@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import Overlay from '../Overlay';
 import { useSelectContext } from '.';
 
-function SelectOptions({ children, ...props }: any) {
-  const { showOptionList, triggerRef, handleClickOutside } = useSelectContext();
+const SelectOptionContext = createContext<any>('');
+
+export function useSelectOptionContext() {
+  return useContext(SelectOptionContext);
+}
+
+function SelectOptions({
+  children,
+  itemStyling,
+  activeItemStyling,
+  ...props
+}: any) {
+  const { isOpen, triggerRef, handleClose } = useSelectContext();
   return (
     <Overlay
-      isOpen={showOptionList}
+      isOpen={isOpen}
       triggerRef={triggerRef}
       placement='bottom'
-      handleClose={handleClickOutside}
+      handleClose={handleClose}
     >
-      <ul {...props}>{children}</ul>
+      <SelectOptionContext.Provider
+        value={{
+          itemStyling,
+          activeItemStyling,
+        }}
+      >
+        <ul {...props}>{children}</ul>
+      </SelectOptionContext.Provider>
     </Overlay>
   );
 }

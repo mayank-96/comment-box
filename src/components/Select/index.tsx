@@ -1,5 +1,4 @@
 import React, { useState, useRef, createContext, useContext } from 'react';
-import styles from '@/styles/Select.module.css';
 
 const SelectContext = createContext<any>('');
 
@@ -7,38 +6,34 @@ export function useSelectContext() {
   return useContext(SelectContext);
 }
 
-function Select({ children, defaultValue, ...props }: any) {
+function Select({ children, defaultValue, handleChange, ...props }: any) {
   const [defaultSelectText, setDefaultSelectText] = useState(
     defaultValue ?? 'Select'
   );
-  const [showOptionList, setShowOptionList] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const selectRef = useRef(null);
   const triggerRef = useRef(null);
 
-  const handleClickOutside = (e: any) => {
-    setShowOptionList(false);
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
-  const handleListDisplay = () => {
-    setShowOptionList((prevState) => !prevState);
-  };
-
-  const handleOptionClick = (e: any) => {
-    setDefaultSelectText(e.target.getAttribute('data-name'));
-    handleClickOutside(e);
+  const handleOpen = () => {
+    setIsOpen(true);
   };
 
   return (
-    <div className={`${styles.customSelectContainer}`} ref={selectRef}>
+    <div ref={selectRef} {...props}>
       <SelectContext.Provider
         value={{
           defaultSelectText,
-          handleListDisplay,
           triggerRef,
-          showOptionList,
-          handleClickOutside,
-          handleOptionClick,
+          isOpen,
+          handleClose,
+          handleOpen,
+          handleChange,
+          setDefaultSelectText,
         }}
       >
         {children}

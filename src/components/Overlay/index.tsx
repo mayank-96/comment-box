@@ -35,9 +35,6 @@ const Overlay = forwardRef(
         const triggerRect = triggerRef.current.getBoundingClientRect();
         const overlayRect = overlayRef.current.getBoundingClientRect();
 
-        console.log('trigger', triggerRect);
-        console.log('overlay', overlayRect);
-
         let left, top;
 
         // Calculate the position based on the placement

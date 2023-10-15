@@ -2,10 +2,9 @@ import React from 'react';
 import { useSelectContext } from '.';
 
 function SelectText({ ...props }: any) {
-  const { defaultSelectText, handleListDisplay, triggerRef } =
-    useSelectContext();
+  const { defaultSelectText, handleOpen, triggerRef } = useSelectContext();
   return (
-    <div onClick={handleListDisplay} ref={triggerRef} {...props}>
+    <div onClick={handleOpen} ref={triggerRef} {...props}>
       {defaultSelectText}
     </div>
   );

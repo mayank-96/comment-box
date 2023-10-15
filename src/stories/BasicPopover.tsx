@@ -6,6 +6,7 @@ import SelectOptions from '@/components/Select/SelectOptions';
 import SelectText from '@/components/Select/SelectText';
 import React, { useState, useRef } from 'react';
 import styles from '@/styles/Select.module.css';
+import { Flag } from 'lucide-react';
 
 function Basic() {
   const [visible, setVisible] = useState(false);
@@ -33,9 +34,17 @@ function Basic() {
             padding: 80,
           }}
         > */}
-      <Select defaultValue='high'>
+      <Select
+        className={`${styles.customSelectContainer}`}
+        defaultValue='High'
+        handleChange={(text: string) => console.log('text', text)}
+      >
         <SelectText />
-        <SelectOptions className={`${styles.selectOptions}`}>
+        <SelectOptions
+          className={`${styles.selectOptions}`}
+          itemStyling={{ backgroundColor: 'yellow' }}
+          activeItemStyling={{ backgroundColor: 'green' }}
+        >
           <SelectItem value='high'>High</SelectItem>
           <SelectItem value='low'>Low</SelectItem>
           <SelectItem value='medium'>Medium</SelectItem>
