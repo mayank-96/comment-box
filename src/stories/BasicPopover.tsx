@@ -4,14 +4,50 @@ import Select from '@/components/Select';
 import SelectItem from '@/components/Select/SelectItem';
 import SelectOptions from '@/components/Select/SelectOptions';
 import SelectText from '@/components/Select/SelectText';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from '@/styles/Select.module.css';
-import { Flag } from 'lucide-react';
 import AudioRecorder from '@/components/AudioRecorder';
+import AudioRecorderTrigger from '@/components/AudioRecorder/AudioRecorderTrigger';
+import AudioRecorderWave from '@/components/AudioRecorder/AudioRecorderWave';
+import AudioRecorderTime from '@/components/AudioRecorder/AudioRecorderTime';
+import AudioRecorderDelete from '@/components/AudioRecorder/AudioRecorderDelete';
 
 function Basic() {
   const [visible, setVisible] = useState(false);
   const triggerRef = useRef(null);
+  const [data, setData] = useState<any>([]);
+  const [startRecording, setStartRecording] = useState(false);
+
+  const handleToggle = () => {
+    setStartRecording((prev: any) => !prev);
+  };
+
+  const handleReset = () => {
+    handleToggle();
+    setData([]);
+  };
+
+  useEffect(() => {
+    let intervalId: any;
+
+    if (startRecording) {
+      intervalId = setInterval(() => {
+        const randomValue = Math.random();
+        setData((prevData: any) => [...prevData, randomValue]);
+      }, 1000);
+    } else {
+      if (intervalId) {
+        clearInterval(intervalId);
+        console.log(data);
+      }
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [startRecording]);
 
   const handleClose = () => {
     setVisible(false);
@@ -51,11 +87,23 @@ function Basic() {
               <SelectItem value='medium'>Medium</SelectItem>
             </SelectOptions>
           </Select>
+
           <div style={{ width: 200 }}>
             asdsadas asd asd sad as dsa dsa das dsa d as das das ad as das das
             ds ad sa
           </div>
-          <AudioRecorder />
+
+          <AudioRecorder
+            startRecording={startRecording}
+            data={data}
+            handleToggle={handleToggle}
+            handleReset={handleReset}
+          >
+            <AudioRecorderTrigger />
+            <AudioRecorderWave />
+            <AudioRecorderTime />
+            <AudioRecorderDelete />
+          </AudioRecorder>
         </div>
       </Popover>
     </div>
