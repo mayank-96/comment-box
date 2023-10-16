@@ -33,7 +33,7 @@ import {
   AudioRecorderDelete,
   CommentCard,
 } from '@/components/composite';
-import useOverlayPosition from '@/components/primitives/Overlay/useOverlayPosition';
+import useOverlayPosition from '@/hooks/useOverlayPosition';
 
 const CommentBox = ({
   isOpen,
