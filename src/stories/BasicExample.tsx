@@ -108,20 +108,6 @@ function BasicExample() {
         <CommentBox isOpen={visible} handleClose={handleClose} triggerRef={ref}>
           <CommentBoxHeader style={{ justifyContent: 'space-between' }}>
             <div style={{ gap: 8, display: 'flex' }}>
-              {/* <Button>
-                <Icon as={Circle} size={16} />
-                <div
-                  style={{
-                    fontSize: '12px',
-                    lineHeight: '16px',
-                    fontWeight: 600,
-                  }}
-                >
-                  Open
-                </div>
-                <Icon as={ChevronDown} size={16} />
-              </Button> */}
-
               <Select
                 defaultValue='open'
                 style={{
@@ -175,7 +161,6 @@ function BasicExample() {
                   </SelectItem>
                 </SelectOptions>
               </Select>
-
               <Select
                 style={{
                   backgroundColor: 'white',
