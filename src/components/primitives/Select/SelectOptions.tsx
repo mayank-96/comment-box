@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import { Overlay, Popover } from '@/components/primitives';
 import { useSelectContext } from './Select';
-import useOverlayPosition from '../../../hooks/useOverlayPosition';
+import useOverlayPosition from '../Overlay/useOverlayPosition';
 
 const SelectOptionContext = createContext<any>('');
 

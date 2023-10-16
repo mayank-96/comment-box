@@ -8,6 +8,7 @@ const CommentCard = ({
   commentTime,
   device = 'Desktop',
   comment,
+  style,
 }: any) => {
   const DeviceBadge = () => {
     return (
@@ -32,6 +33,9 @@ const CommentCard = ({
       style={{
         display: 'flex',
         gap: 8,
+        paddingBlock: 8,
+        marginBlock: 4,
+        ...style,
       }}
     >
       <Avatar src={profileUrl} />
