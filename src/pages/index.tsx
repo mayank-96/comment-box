@@ -4,9 +4,6 @@ import styles from '@/styles/Home.module.css';
 import { useEffect, useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
 import BasicExample from '@/stories/BasicExample';
-import BasicPopover from '@/stories/BasicPopover';
-import BasicSelect from '@/stories/BasicSelect';
-import BasicMention from '@/stories/BasicMention';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -38,9 +35,6 @@ export default function Home() {
           setActiveTheme={setActiveTheme}
         />
         <BasicExample />
-        {/* <BasicPopover /> */}
-        {/* <BasicSelect /> */}
-        {/* <BasicMention /> */}
       </main>
     </>
   );
