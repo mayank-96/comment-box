@@ -337,20 +337,6 @@ function BasicExample() {
               </div>
             </div>
           </CommentBoxBody>
-          <CommentBoxFooter></CommentBoxFooter>
-          <div
-            style={{
-              display: 'flex',
-              gap: 4,
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--color-primary-6)',
-              fontWeight: 500,
-            }}
-          >
-            <Icon as={MessageCircle} size={20} strokeWidth={2.5} />
-            <div>All comments</div>
-          </div>
         </CommentBox>
       </div>
     </div>
