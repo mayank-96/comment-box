@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { Overlay } from '@/components/primitives';
+import { Overlay, Popover } from '@/components/primitives';
 import { useSelectContext } from './Select';
 
 const SelectOptionContext = createContext<any>('');
@@ -8,29 +8,21 @@ const useSelectOptionContext = () => {
   return useContext(SelectOptionContext);
 };
 
-const SelectOptions = ({
-  children,
-  itemStyling,
-  activeItemStyling,
-  ...props
-}: any) => {
+const SelectOptions = ({ children, offset, ...props }: any) => {
   const { isOpen, triggerRef, handleClose } = useSelectContext();
   return (
-    <Overlay
-      isOpen={isOpen}
-      triggerRef={triggerRef}
-      placement='bottom'
+    <Popover
+      visible={isOpen}
       handleClose={handleClose}
+      triggerRef={triggerRef}
+      placement='bottom right'
+      offset={offset}
+      style={{ padding: 8 }}
     >
-      <SelectOptionContext.Provider
-        value={{
-          itemStyling,
-          activeItemStyling,
-        }}
-      >
+      <SelectOptionContext.Provider value={{}}>
         <ul {...props}>{children}</ul>
       </SelectOptionContext.Provider>
-    </Overlay>
+    </Popover>
   );
 };
 

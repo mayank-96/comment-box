@@ -16,6 +16,7 @@ const Popover = forwardRef(
       placement,
       children,
       style,
+      offset = 20,
       ...props
     }: any,
     ref: any
@@ -25,11 +26,26 @@ const Popover = forwardRef(
         isOpen={visible}
         triggerRef={triggerRef}
         placement={placement}
-        offset={20}
+        offset={offset}
         handleClose={handleClose}
       >
         <PopoverContext.Provider value={{ handleClose }}>
-          <div ref={ref} style={{ ...style }} {...props}>
+          <div
+            ref={ref}
+            style={{
+              padding: 16,
+              backgroundColor: 'var(--color-neutral-10)',
+              border: '1px solid var(--color-neutral-8)',
+              borderRadius: 12,
+              boxShadow: '0px 8px 16px 0px #0F0F0F1A',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 16,
+              ...style,
+            }}
+            {...props}
+          >
             {children}
           </div>
         </PopoverContext.Provider>

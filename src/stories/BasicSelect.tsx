@@ -1,19 +1,20 @@
 import {
+  Icon,
   Select,
   SelectItem,
   SelectOptions,
   SelectText,
   Textarea,
 } from '@/components/primitives';
+import { FlagIcon } from 'lucide-react';
 import React from 'react';
 
 function BasicSelect() {
   return (
     <div
       style={{
-        backgroundColor: 'black',
         display: 'flex',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
       }}
@@ -22,20 +23,60 @@ function BasicSelect() {
         style={{
           backgroundColor: 'white',
           color: 'black',
-          width: 200,
         }}
-        defaultValue='High'
         handleChange={(text: string) => console.log('text', text)}
       >
-        <SelectText style={{ width: '100%', padding: 8 }} />
+        <SelectText>
+          <Icon as={FlagIcon} size={18} />
+        </SelectText>
         <SelectOptions
-          style={{ listStyleType: 'none', width: 200, color: 'white' }}
-          itemStyling={{ backgroundColor: 'black', padding: 8 }}
-          activeItemStyling={{ backgroundColor: 'gray', padding: 8 }}
+          offset={10}
+          style={{ listStyleType: 'none', width: 190 }}
         >
-          <SelectItem value='high'> High</SelectItem>
-          <SelectItem value='low'>Low</SelectItem>
-          <SelectItem value='medium'>Medium</SelectItem>
+          <SelectItem
+            value='high'
+            selectedStyle={{
+              color: 'var(--color-primary-3)',
+              backgroundColor: '#ff716233',
+            }}
+          >
+            <Icon
+              as={FlagIcon}
+              size={18}
+              style={{
+                color: 'var(--color-primary-3)',
+              }}
+            />
+            <div>High</div>
+          </SelectItem>
+          <SelectItem
+            value='low'
+            selectedStyle={{
+              color: 'var(--color-secondary-3)',
+              backgroundColor: '#ffd16633',
+            }}
+          >
+            <Icon
+              as={FlagIcon}
+              size={18}
+              style={{ color: 'var(--color-secondary-3)' }}
+            />
+            <div>Low</div>
+          </SelectItem>
+          <SelectItem
+            value='medium'
+            selectedStyle={{
+              color: 'var(--color-primary-6)',
+              backgroundColor: '#625df533',
+            }}
+          >
+            <Icon
+              as={FlagIcon}
+              size={18}
+              style={{ color: 'var(--color-primary-6)' }}
+            />
+            <div>Medium</div>
+          </SelectItem>
         </SelectOptions>
       </Select>
     </div>

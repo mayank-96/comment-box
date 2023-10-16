@@ -2,25 +2,31 @@ import React from 'react';
 import { useSelectContext } from './Select';
 import { useSelectOptionContext } from './SelectOptions';
 
-const SelectItem = ({ children, value, ...props }: any) => {
-  const { defaultSelectText, handleClose, setDefaultSelectText, handleChange } =
+const SelectItem = ({ children, value, selectedStyle, ...props }: any) => {
+  const { selectedText, handleClose, setSelectText, handleChange } =
     useSelectContext();
 
-  const { activeItemStyling, itemStyling } = useSelectOptionContext();
+  const {} = useSelectOptionContext();
 
   const handleOptionClick = (e: any) => {
-    setDefaultSelectText(e.target.getAttribute('data-name'));
+    setSelectText({
+      value: value,
+      children: children,
+      selectedStyle: selectedStyle,
+    });
     handleClose();
     handleChange(value);
   };
 
-  console.log(value, defaultSelectText);
-
   return (
     <li
-      style={children === defaultSelectText ? activeItemStyling : itemStyling}
+      style={{
+        display: 'flex',
+        gap: 4,
+        alignItems: 'center',
+        padding: 8,
+      }}
       {...props}
-      data-name={children}
       key={value}
       onClick={handleOptionClick}
     >

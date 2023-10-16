@@ -5,10 +5,14 @@ const useSelectContext = () => {
   return useContext(SelectContext);
 };
 
-const Select = ({ children, defaultValue, handleChange, ...props }: any) => {
-  const [defaultSelectText, setDefaultSelectText] = useState(
-    defaultValue ?? 'Select'
-  );
+const Select = ({
+  children,
+  defaultValue,
+  handleChange,
+  style,
+  ...props
+}: any) => {
+  const [selectedText, setSelectText] = useState<any>(defaultValue ?? {});
   const [isOpen, setIsOpen] = useState(false);
 
   const selectRef = useRef(null);
@@ -23,16 +27,23 @@ const Select = ({ children, defaultValue, handleChange, ...props }: any) => {
   };
 
   return (
-    <div ref={selectRef} {...props}>
+    <div
+      ref={selectRef}
+      style={{
+        borderRadius: 999,
+        ...style,
+      }}
+      {...props}
+    >
       <SelectContext.Provider
         value={{
-          defaultSelectText,
+          selectedText,
           triggerRef,
           isOpen,
           handleClose,
           handleOpen,
           handleChange,
-          setDefaultSelectText,
+          setSelectText,
         }}
       >
         {children}
