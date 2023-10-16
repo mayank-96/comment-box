@@ -138,7 +138,7 @@ const CommentBox = ({ isOpen, handleClose, triggerRef }: any) => {
               >
                 <Icon
                   as={FlagIcon}
-                  size={18}
+                  size={16}
                   style={{
                     color: 'var(--color-primary-3)',
                   }}
@@ -154,7 +154,7 @@ const CommentBox = ({ isOpen, handleClose, triggerRef }: any) => {
               >
                 <Icon
                   as={FlagIcon}
-                  size={18}
+                  size={16}
                   style={{ color: 'var(--color-secondary-3)' }}
                 />
                 <div>P1</div>
@@ -168,7 +168,7 @@ const CommentBox = ({ isOpen, handleClose, triggerRef }: any) => {
               >
                 <Icon
                   as={FlagIcon}
-                  size={18}
+                  size={16}
                   style={{ color: 'var(--color-primary-6)' }}
                 />
                 <div>P2</div>
