@@ -116,6 +116,8 @@ const Overlay = forwardRef(
         }
 
         setOverlayPosition({ left, top });
+      } else {
+        setOverlayPosition({});
       }
     }, [isOpen, triggerRef, placement, offset, overlayRef]);
 
