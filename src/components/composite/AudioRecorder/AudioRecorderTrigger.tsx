@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAudioRecorderContext } from './AudioRecorder';
-import { PlayCircle, XCircle } from 'lucide-react';
+import { PauseCircle, PlayCircle, XCircle } from 'lucide-react';
 import { Icon } from '@/components/primitives';
 
 const AudioRecorderTrigger = ({ style, ...props }: any) => {
@@ -13,9 +13,9 @@ const AudioRecorderTrigger = ({ style, ...props }: any) => {
     >
       {startRecording ? (
         <Icon
-          as={XCircle}
+          as={PauseCircle}
           size={18}
-          style={{ color: 'var(--color-primary-3)' }}
+          style={{ color: 'var(--color-secondary-3)' }}
         />
       ) : (
         <Icon

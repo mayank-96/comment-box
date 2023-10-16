@@ -22,7 +22,6 @@ import {
 } from '@/components/primitives';
 import {
   Check,
-  ChevronDown,
   ChevronRight,
   Circle,
   Copy,
@@ -36,12 +35,11 @@ import {
   Video,
   XCircle,
 } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 function BasicExample() {
   const [visible, setVisible] = useState(false);
-  const [data, setData] = useState<any>([]);
-  const [startRecording, setStartRecording] = useState(false);
+
   const [showAudioRecording, setShowAudioRecording] = useState(false);
 
   const ref = useRef(null);
@@ -49,40 +47,6 @@ function BasicExample() {
   const handleClose = () => {
     setVisible(false);
   };
-
-  const handleToggle = () => {
-    setStartRecording((prev: any) => !prev);
-  };
-
-  const handleReset = () => {
-    setStartRecording(false);
-    setData([]);
-  };
-
-  useEffect(() => {
-    let intervalId: any;
-
-    if (startRecording) {
-      intervalId = setInterval(() => {
-        let randomValue = Math.random();
-        if (randomValue < 0.15) {
-          randomValue = 0;
-        }
-        setData((prevData: any) => [...prevData, randomValue]);
-      }, 100);
-    } else {
-      if (intervalId) {
-        clearInterval(intervalId);
-        console.log(data);
-      }
-    }
-
-    return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-    };
-  }, [startRecording]);
 
   return (
     <div
@@ -276,12 +240,7 @@ function BasicExample() {
             >
               <Textarea placeholder='Comment or record' />
               {showAudioRecording && (
-                <AudioRecorder
-                  startRecording={startRecording}
-                  data={data}
-                  handleToggle={handleToggle}
-                  handleReset={handleReset}
-                >
+                <AudioRecorder>
                   <AudioRecorderTrigger />
                   <AudioRecorderWave />
                   <AudioRecorderTime />
@@ -327,7 +286,7 @@ function BasicExample() {
                     style={{ color: 'var(--color-neutral-6)' }}
                   />
                 </div>
-                <Button isDisabled={startRecording}>
+                <Button>
                   <Icon
                     as={ChevronRight}
                     size={16}

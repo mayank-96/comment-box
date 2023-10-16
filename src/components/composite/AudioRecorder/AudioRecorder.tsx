@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const AudioRecorderContext = createContext<any>('');
 
@@ -6,33 +6,43 @@ const useAudioRecorderContext = () => {
   return useContext(AudioRecorderContext);
 };
 
-const AudioRecorder = ({
-  startRecording,
-  data,
-  handleToggle,
-  handleReset,
-  children,
-  style,
-  barWidth = 3,
-  barGap = 1,
-  ...props
-}: any) => {
-  const waveRef = useRef(null);
-  let containerWidth = 100;
+const AudioRecorder = ({ children, style, ...props }: any) => {
+  const [data, setData] = useState<any>([]);
+  const [startRecording, setStartRecording] = useState(false);
 
-  if (waveRef.current) {
-    // @ts-ignore
-    const containerRect = waveRef.current.getBoundingClientRect();
-    containerWidth = containerRect.width;
-  }
+  const handleToggle = () => {
+    setStartRecording((prev: any) => !prev);
+  };
 
-  const n = data.length;
-  const totalBarWidth = barWidth * n + barGap * (n - 1);
-  let transformX = 0;
+  const handleReset = () => {
+    setStartRecording(false);
+    setData([]);
+  };
 
-  if (containerWidth < totalBarWidth) {
-    transformX = totalBarWidth - containerWidth;
-  }
+  useEffect(() => {
+    let intervalId: any;
+
+    if (startRecording) {
+      intervalId = setInterval(() => {
+        let randomValue = Math.random();
+        if (randomValue < 0.15) {
+          randomValue = 0;
+        }
+        setData((prevData: any) => [...prevData, randomValue]);
+      }, 100);
+    } else {
+      if (intervalId) {
+        clearInterval(intervalId);
+        console.log(data);
+      }
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [startRecording]);
 
   return (
     <div
@@ -53,10 +63,6 @@ const AudioRecorder = ({
           handleToggle,
           startRecording,
           handleReset,
-          barGap,
-          barWidth,
-          transformX,
-          waveRef,
         }}
       >
         {children}

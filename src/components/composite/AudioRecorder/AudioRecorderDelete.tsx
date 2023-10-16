@@ -4,7 +4,7 @@ import { Trash2 } from 'lucide-react';
 import { Icon } from '@/components/primitives';
 
 const AudioRecorderDelete = ({ style, ...props }: any) => {
-  const { handleReset } = useAudioRecorderContext();
+  const { data, handleReset } = useAudioRecorderContext();
   return (
     <div
       style={{ display: 'flex', alignItems: 'center', ...style }}
@@ -13,7 +13,13 @@ const AudioRecorderDelete = ({ style, ...props }: any) => {
       }}
       {...props}
     >
-      <Icon as={Trash2} size={18} style={{ color: 'var(--color-primary-3)' }} />
+      {data.length > 0 && (
+        <Icon
+          as={Trash2}
+          size={18}
+          style={{ color: 'var(--color-primary-3)' }}
+        />
+      )}
     </div>
   );
 };
