@@ -19,6 +19,7 @@ export default function Home() {
   useEffect(() => {
     if (typeof window === 'object') {
       document.body.dataset.theme = activeTheme;
+      document.body.className = poppins.className;
       window.localStorage.setItem('theme', activeTheme);
     }
   }, [activeTheme]);
@@ -31,7 +32,7 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className={`${styles.main} ${poppins.className}`}>
+      <main className={`${styles.main}`}>
         <ThemeToggle
           activeTheme={activeTheme}
           setActiveTheme={setActiveTheme}

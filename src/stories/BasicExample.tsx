@@ -34,6 +34,7 @@ import {
   Paperclip,
   Smile,
   Video,
+  XCircle,
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -107,7 +108,7 @@ function BasicExample() {
         <CommentBox isOpen={visible} handleClose={handleClose} triggerRef={ref}>
           <CommentBoxHeader style={{ justifyContent: 'space-between' }}>
             <div style={{ gap: 8, display: 'flex' }}>
-              <Button>
+              {/* <Button>
                 <Icon as={Circle} size={16} />
                 <div
                   style={{
@@ -119,7 +120,61 @@ function BasicExample() {
                   Open
                 </div>
                 <Icon as={ChevronDown} size={16} />
-              </Button>
+              </Button> */}
+
+              <Select
+                defaultValue='open'
+                style={{
+                  backgroundColor: 'white',
+                  color: 'black',
+                  fontSize: '12px',
+                  lineHeight: '16px',
+                  fontWeight: 600,
+                }}
+                handleChange={(item: any) => console.log('selected item', item)}
+              >
+                <SelectText dropDownIconSize={16}>
+                  <Icon as={Circle} size={16} />
+                </SelectText>
+                <SelectOptions
+                  offset={10}
+                  style={{
+                    listStyleType: 'none',
+                    width: 190,
+                  }}
+                >
+                  <SelectItem
+                    value='open'
+                    selectedStyle={{
+                      color: 'var(--color-primary-6)',
+                      backgroundColor: '#625df533',
+                    }}
+                  >
+                    <Icon
+                      as={Circle}
+                      size={16}
+                      style={{ color: 'var(--color-primary-6)' }}
+                    />
+                    <div>Open</div>
+                  </SelectItem>
+                  <SelectItem
+                    value='closed'
+                    selectedStyle={{
+                      color: 'var(--color-primary-3)',
+                      backgroundColor: '#ff716233',
+                    }}
+                  >
+                    <Icon
+                      as={XCircle}
+                      size={16}
+                      style={{
+                        color: 'var(--color-primary-3)',
+                      }}
+                    />
+                    <div>Closed</div>
+                  </SelectItem>
+                </SelectOptions>
+              </Select>
 
               <Select
                 style={{

@@ -1,4 +1,10 @@
-import React, { useState, useRef, createContext, useContext } from 'react';
+import React, {
+  useState,
+  useRef,
+  createContext,
+  useContext,
+  useEffect,
+} from 'react';
 
 const SelectContext = createContext<any>('');
 const useSelectContext = () => {
@@ -12,8 +18,15 @@ const Select = ({
   style,
   ...props
 }: any) => {
-  const [selectedText, setSelectText] = useState<any>(defaultValue ?? {});
+  const [selectedText, setSelectText] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
+  const [defaultDone, setDefaultDone] = useState(false);
+
+  useEffect(() => {
+    if (defaultValue && !defaultDone) {
+      setIsOpen(true);
+    }
+  }, []);
 
   const selectRef = useRef(null);
   const triggerRef = useRef(null);
@@ -44,6 +57,10 @@ const Select = ({
           handleOpen,
           handleChange,
           setSelectText,
+          defaultValue,
+          setIsOpen,
+          defaultDone,
+          setDefaultDone,
         }}
       >
         {children}

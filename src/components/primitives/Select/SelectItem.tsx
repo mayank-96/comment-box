@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelectContext } from './Select';
 import { useSelectOptionContext } from './SelectOptions';
 
 const SelectItem = ({ children, value, selectedStyle, ...props }: any) => {
-  const { selectedText, handleClose, setSelectText, handleChange } =
-    useSelectContext();
+  const {
+    defaultValue,
+    handleClose,
+    setSelectText,
+    handleChange,
+    setIsOpen,
+    defaultDone,
+    setDefaultDone,
+  } = useSelectContext();
 
   const {} = useSelectOptionContext();
+
+  useEffect(() => {
+    if (defaultValue === value && !defaultDone) {
+      setSelectText({
+        value: value,
+        children: children,
+        selectedStyle: selectedStyle,
+      });
+      setIsOpen(false);
+      setDefaultDone(true);
+    }
+  }, []);
 
   const handleOptionClick = (e: any) => {
     setSelectText({
