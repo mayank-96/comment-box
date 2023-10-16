@@ -16,7 +16,6 @@ import {
   ChevronRight,
   Circle,
   Copy,
-  Flag,
   FlagIcon,
   MessageCircle,
   Mic,
@@ -34,8 +33,15 @@ import {
   AudioRecorderDelete,
   CommentCard,
 } from '@/components/composite';
+import useOverlayPosition from '@/components/primitives/Overlay/useOverlayPosition';
 
-const CommentBox = ({ isOpen, handleClose, triggerRef }: any) => {
+const CommentBox = ({
+  isOpen,
+  handleClose,
+  triggerRef,
+  placement = 'right bottom',
+  offset = 10,
+}: any) => {
   const [data, setData] = useState<any>([]);
   const [startRecording, setStartRecording] = useState(false);
   const [showAudioRecording, setShowAudioRecording] = useState(false);
@@ -48,6 +54,13 @@ const CommentBox = ({ isOpen, handleClose, triggerRef }: any) => {
     setStartRecording(false);
     setData([]);
   };
+
+  const { overlayPosition, overlayRef } = useOverlayPosition({
+    triggerRef,
+    placement,
+    offset,
+    isOpen,
+  });
 
   useEffect(() => {
     let intervalId: any;
@@ -76,11 +89,10 @@ const CommentBox = ({ isOpen, handleClose, triggerRef }: any) => {
 
   return (
     <Popover
+      overlayPosition={overlayPosition}
+      overlayRef={overlayRef}
       visible={isOpen}
       handleClose={handleClose}
-      triggerRef={triggerRef}
-      placement='right bottom'
-      offset={30}
       style={{
         width: 360,
       }}

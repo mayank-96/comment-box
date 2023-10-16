@@ -10,13 +10,12 @@ const usePopoverContext = () => {
 const Popover = forwardRef(
   (
     {
+      overlayPosition,
+      overlayRef,
       visible,
       handleClose,
-      triggerRef,
-      placement,
       children,
       style,
-      offset = 20,
       ...props
     }: any,
     ref: any
@@ -24,10 +23,9 @@ const Popover = forwardRef(
     return (
       <Overlay
         isOpen={visible}
-        triggerRef={triggerRef}
-        placement={placement}
-        offset={offset}
         handleClose={handleClose}
+        overlayPosition={overlayPosition}
+        overlayRef={overlayRef}
       >
         <PopoverContext.Provider value={{ handleClose }}>
           <div
