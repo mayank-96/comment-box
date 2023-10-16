@@ -2,7 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelectContext } from './Select';
 import { useSelectOptionContext } from './SelectOptions';
 
-const SelectItem = ({ children, value, selectedStyle, ...props }: any) => {
+const SelectItem = ({
+  children,
+  value,
+  selectedStyle,
+  onClick: userOnClick = () => {},
+  ...props
+}: any) => {
   const {
     defaultValue,
     handleClose,
@@ -35,6 +41,7 @@ const SelectItem = ({ children, value, selectedStyle, ...props }: any) => {
     });
     handleClose();
     handleChange(value);
+    userOnClick();
   };
 
   return (

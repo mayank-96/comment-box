@@ -1,3 +1,4 @@
+import { mergeRefs } from '@/utils/mergeRef';
 import React, {
   useState,
   useRef,
@@ -16,6 +17,8 @@ const Select = ({
   defaultValue,
   handleChange,
   style,
+  isOpen: isOpenProp,
+  triggerRef: triggerRefProp,
   ...props
 }: any) => {
   const [selectedText, setSelectText] = useState<any>({});
@@ -51,8 +54,8 @@ const Select = ({
       <SelectContext.Provider
         value={{
           selectedText,
-          triggerRef,
-          isOpen,
+          triggerRef: triggerRef,
+          isOpen: isOpenProp || isOpen,
           handleClose,
           handleOpen,
           handleChange,

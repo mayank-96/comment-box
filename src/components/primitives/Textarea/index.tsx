@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const Textarea = ({ style, ...props }: any) => {
+const Textarea = forwardRef(({ style, ...props }: any, ref: any) => {
   return (
     <textarea
+      ref={ref}
       style={{
         border: 'none',
         overflow: 'auto',
@@ -18,6 +19,8 @@ const Textarea = ({ style, ...props }: any) => {
       {...props}
     />
   );
-};
+});
+
+Textarea.displayName = 'Textarea';
 
 export { Textarea };

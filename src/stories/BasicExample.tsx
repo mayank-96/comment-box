@@ -36,6 +36,8 @@ import {
   XCircle,
 } from 'lucide-react';
 import React, { useRef, useState } from 'react';
+import BasicMention from './BasicMention';
+import BasicSelect from './BasicSelect';
 
 function BasicExample() {
   const [visible, setVisible] = useState(false);
@@ -239,6 +241,7 @@ function BasicExample() {
               }}
             >
               <Textarea placeholder='Comment or record' />
+              {/* <BasicSelect /> */}
               {showAudioRecording && (
                 <AudioRecorder>
                   <AudioRecorderTrigger />

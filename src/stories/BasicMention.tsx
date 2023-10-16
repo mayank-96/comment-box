@@ -1,62 +1,103 @@
+import { Popover, Textarea } from '@/components/primitives';
+import useOverlayPosition from '@/components/primitives/Overlay/useOverlayPosition';
 import React, { useState, useRef, useEffect } from 'react';
-import debounce from 'lodash/debounce';
+import { createPortal } from 'react-dom';
 
 const BasicMention = () => {
   const [text, setText] = useState('');
   const [showMentions, setShowMentions] = useState(false);
-  const [mentions, setMentions] = useState([]);
-  const [selectedUser, setSelectedUser] = useState('');
-  const textareaRef = useRef(null);
+  const [mentions, setMentions] = useState<any>([]);
 
-  useEffect(() => {
-    // You can fetch user mentions from your data source here.
-    // For now, using a static list for demonstration.
-    const userMentions = ['mayank', 'john', 'alice', 'bob'];
-    setMentions(userMentions);
-  }, []);
+  const textareaRef = useRef<any>(null);
+  const absoluteContainerRef = useRef<any>(null);
 
-  const handleDebounceInputChange = (e) => {
+  const handleDebounceInputChange = (e: any) => {
     const newText = e.target.value;
     setText(newText);
 
-    // Check if the user is typing an "@" symbol
-    if (newText.includes('@')) {
+    if (newText[newText.length - 1] === '@') {
       setShowMentions(true);
     } else {
       setShowMentions(false);
     }
   };
-  const handleSelectUser = (user) => {
-    const newText = text.replace(`@${selectedUser}`, `@${user}`);
+
+  const handleSelectUser = (user: string) => {
+    const newText = text + user;
     setText(newText);
     setShowMentions(false);
-    setSelectedUser('');
 
-    // Focus on the textarea
     if (textareaRef.current) {
       textareaRef.current.focus();
     }
   };
 
-  const debouncedInputChange = useRef(debounce(handleDebounceInputChange, 300));
+  const handleClose = () => {
+    setShowMentions(false);
+  };
+
+  useEffect(() => {
+    const userMentions = ['mayank', 'john', 'alice', 'bob'];
+    setMentions(userMentions);
+  }, []);
 
   return (
     <div>
-      <textarea
+      <Textarea
         ref={textareaRef}
         value={text}
         onChange={handleDebounceInputChange}
         placeholder='Type your comment...'
+        style={{
+          position: 'relative',
+          backgroundColor: 'pink',
+        }}
       />
+
       {showMentions && (
-        <div className='mention-box'>
-          {mentions.map((user) => (
+        <div
+          style={{
+            position: 'absolute',
+            backgroundColor: 'red',
+          }}
+        >
+          {mentions.map((user: string) => (
             <div key={user} onClick={() => handleSelectUser(user)}>
               {user}
             </div>
           ))}
         </div>
       )}
+
+      {/* {showMentions &&
+        createPortal(
+          <div
+            ref={absoluteContainerRef}
+            style={{
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+            }}
+            onClick={handleClose}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                top: cursorPosition.y,
+                left: cursorPosition.x,
+              }}
+            >
+              {mentions.map((user: string) => (
+                <div key={user} onClick={() => handleSelectUser(user)}>
+                  {user}
+                </div>
+              ))}
+            </div>
+          </div>,
+          document.body
+        )} */}
     </div>
   );
 };
