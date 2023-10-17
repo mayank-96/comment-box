@@ -1,12 +1,9 @@
 import {
   Select,
-  SelectText,
-  Icon,
   SelectOptions,
   SelectItem,
   Textarea,
 } from '@/components/primitives';
-import { Circle, XCircle } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
 function BasicSelect() {
@@ -57,7 +54,6 @@ function BasicSelect() {
     //   }}
     // >
     <Select
-      defaultValue='open'
       style={{
         backgroundColor: 'white',
         color: 'black',
@@ -79,13 +75,12 @@ function BasicSelect() {
         offset={10}
         style={{
           listStyleType: 'none',
-          // width: 190,
         }}
       >
-        {mentions.map((name: string) => {
+        {mentions.map((name: string, index: string) => {
           return (
             <SelectItem
-              key={name}
+              key={index}
               value='name'
               onClick={() => handleSelectUser(name)}
             >

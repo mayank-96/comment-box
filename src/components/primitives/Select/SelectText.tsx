@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelectContext } from './Select';
 import { Icon } from '@/components/primitives';
-import { ChevronDown, ChevronUp, Flag } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const SelectText = ({
   style,

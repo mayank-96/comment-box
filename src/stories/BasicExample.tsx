@@ -240,8 +240,8 @@ function BasicExample() {
                 flexDirection: 'column',
               }}
             >
-              <Textarea placeholder='Comment or record' />
-              {/* <BasicSelect /> */}
+              {/* <Textarea placeholder='Comment or record' /> */}
+              <BasicSelect />
               {showAudioRecording && (
                 <AudioRecorder>
                   <AudioRecorderTrigger />

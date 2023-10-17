@@ -32,7 +32,14 @@ const Select = ({
   }, []);
 
   const selectRef = useRef(null);
-  const triggerRef = useRef(null);
+
+  const triggerRef = useRef(triggerRefProp);
+
+  useEffect(() => {
+    if (triggerRefProp && triggerRefProp.current) {
+      triggerRef.current = triggerRefProp.current;
+    }
+  }, [triggerRefProp]);
 
   const handleClose = () => {
     setIsOpen(false);
