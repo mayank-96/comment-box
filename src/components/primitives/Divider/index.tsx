@@ -4,7 +4,7 @@ const Divider = ({ style }: any) => {
   return (
     <div
       style={{
-        backgroundColor: 'var(--color-neutral-8',
+        backgroundColor: 'var(--color-primary-border',
         height: 1,
         ...style,
       }}

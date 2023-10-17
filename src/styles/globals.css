@@ -6,7 +6,10 @@
 
 body,
 body[data-theme='light'] {
-  --color-background: #ffffff;
+  --color-primary-background: #ffffff;
+  --color-secondary-background: #f4f5f6;
+  --color-primary-border: #e6e8ec;
+  --color-primary-text: #23262f;
   --color-primary-6: #625df5;
   --color-primary-2: #a259fe;
   --color-primary-3: #ff7162;
@@ -23,7 +26,10 @@ body[data-theme='light'] {
 }
 
 body[data-theme='dark'] {
-  --color-background: #000000;
+  --color-primary-background: #141416;
+  --color-secondary-background: #000000;
+  --color-primary-border: #303034;
+  --color-primary-text: #e5e5e9;
   --color-primary-6: #625df5;
   --color-primary-3: #ff7162;
   --color-primary-4: #0dcf82;

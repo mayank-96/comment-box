@@ -50,6 +50,8 @@ const SelectItem = ({
         display: 'flex',
         gap: 4,
         alignItems: 'center',
+        color: 'var(--color-primary-text)',
+
         padding: 8,
       }}
       {...props}

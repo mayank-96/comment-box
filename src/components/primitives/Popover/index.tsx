@@ -32,8 +32,8 @@ const Popover = forwardRef(
             ref={ref}
             style={{
               padding: 16,
-              backgroundColor: 'var(--color-neutral-10)',
-              border: '1px solid var(--color-neutral-8)',
+              backgroundColor: 'var(--color-primary-background)',
+              border: '1px solid var(--color-primary-border)',
               borderRadius: 12,
               boxShadow: '0px 8px 16px 0px #0F0F0F1A',
               overflow: 'hidden',

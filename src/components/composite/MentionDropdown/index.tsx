@@ -43,7 +43,7 @@ const MentionDropdown = ({
   return (
     <Select
       style={{
-        backgroundColor: 'white',
+        backgroundColor: 'var(--color-primary-background)',
         color: 'black',
         fontSize: '12px',
         lineHeight: '16px',
@@ -58,6 +58,10 @@ const MentionDropdown = ({
         ref={triggerRef}
         placeholder='Type your comment...'
         onChange={handleTextChange}
+        style={{
+          backgroundColor: 'var(--color-primary-background)',
+          color: 'var(--color-primary-text)',
+        }}
       />
       <SelectOptions
         offset={10}

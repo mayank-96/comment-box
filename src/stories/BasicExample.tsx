@@ -47,6 +47,7 @@ function BasicExample() {
 
   const handleClose = () => {
     setVisible(false);
+    setShowAudioRecording(false);
   };
 
   useEffect(() => {
@@ -62,7 +63,7 @@ function BasicExample() {
   return (
     <div
       style={{
-        backgroundColor: 'black',
+        backgroundColor: 'var(--color-primary-background)',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -74,7 +75,7 @@ function BasicExample() {
           width: 500,
           height: 500,
           padding: 32,
-          backgroundColor: 'var(--color-neutral-9)',
+          backgroundColor: 'var(--color-secondary-background)',
         }}
       >
         <Button ref={ref} onClick={() => setVisible(true)}>
@@ -218,19 +219,19 @@ function BasicExample() {
               <Icon
                 as={MoreHorizontal}
                 size={16}
-                style={{ color: 'var(--color-neutral-3)' }}
+                style={{ color: 'var(--color-primary-text)' }}
               />
 
               <Icon
                 as={Copy}
                 size={16}
-                style={{ color: 'var(--color-neutral-3)' }}
+                style={{ color: 'var(--color-primary-text)' }}
               />
 
               <Icon
                 as={Check}
                 size={16}
-                style={{ color: 'var(--color-neutral-3)' }}
+                style={{ color: 'var(--color-primary-text)' }}
               />
             </div>
           </CommentBoxHeader>
@@ -245,7 +246,7 @@ function BasicExample() {
             />
             <div
               style={{
-                border: '1px solid var(--color-neutral-9)',
+                border: '1px solid var(--color-primary-border)',
                 padding: 16,
                 borderRadius: 12,
                 display: 'flex',

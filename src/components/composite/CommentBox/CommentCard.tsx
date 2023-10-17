@@ -47,7 +47,15 @@ const CommentCard = ({
           flexDirection: 'column',
         }}
       >
-        <div style={{ fontWeight: 600, fontSize: '16px' }}>{profileName}</div>
+        <div
+          style={{
+            fontWeight: 600,
+            fontSize: '16px',
+            color: 'var(--color-primary-text)',
+          }}
+        >
+          {profileName}
+        </div>
         <div
           style={{
             display: 'flex',
@@ -67,7 +75,15 @@ const CommentCard = ({
           </div>
           <DeviceBadge />
         </div>
-        <div style={{ fontWeight: 300, fontSize: '16px' }}>{comment}</div>
+        <div
+          style={{
+            fontWeight: 300,
+            fontSize: '16px',
+            color: 'var(--color-primary-text)',
+          }}
+        >
+          {comment}
+        </div>
       </div>
     </div>
   );
