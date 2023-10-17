@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { Overlay, Popover } from '@/components/primitives';
+import { Popover } from '@/components/primitives';
 import { useSelectContext } from './Select';
 import useOverlayPosition from '../Overlay/useOverlayPosition';
 

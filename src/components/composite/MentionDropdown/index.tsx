@@ -4,7 +4,7 @@ import {
   SelectOptions,
   SelectItem,
 } from '@/components/primitives';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 const MentionDropdown = ({
   mentions,
