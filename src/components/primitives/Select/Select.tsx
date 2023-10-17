@@ -15,9 +15,10 @@ const useSelectContext = () => {
 const Select = ({
   children,
   defaultValue,
-  handleChange,
+  handleChange = () => {},
   style,
   isOpen: isOpenProp,
+  handleClose: handleCloseProp = () => {},
   triggerRef: triggerRefProp,
   ...props
 }: any) => {
@@ -43,6 +44,7 @@ const Select = ({
 
   const handleClose = () => {
     setIsOpen(false);
+    handleCloseProp();
   };
 
   const handleOpen = () => {

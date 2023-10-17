@@ -1,21 +1,26 @@
 import {
   Select,
+  Textarea,
   SelectOptions,
   SelectItem,
-  Textarea,
 } from '@/components/primitives';
 import React, { useEffect, useRef, useState } from 'react';
 
-function BasicSelect() {
+const MentionDropdown = ({
+  mentions,
+  handleTextChange: handleTextChangeProp = () => {},
+  style,
+  ...prop
+}: any) => {
   const [text, setText] = useState('');
   const [showMentions, setShowMentions] = useState(false);
-  const [mentions, setMentions] = useState<any>([]);
 
   const triggerRef = useRef<any>(null);
 
-  const handleDebounceInputChange = (e: any) => {
+  const handleTextChange = (e: any) => {
     const newText = e.target.value;
     setText(newText);
+    handleTextChangeProp(newText);
 
     if (newText[newText.length - 1] === '@') {
       setShowMentions(true);
@@ -28,31 +33,14 @@ function BasicSelect() {
     const newText = text + user;
     setText(newText);
     setShowMentions(false);
+    handleTextChangeProp(newText);
 
     if (triggerRef.current) {
       triggerRef.current.focus();
     }
   };
 
-  useEffect(() => {
-    const userMentions = [
-      'Kate Petrokhalko',
-      'Kate Petrokhalko',
-      'Kate Petrokhalko',
-      'Kate Petrokhalko',
-    ];
-    setMentions(userMentions);
-  }, []);
-
   return (
-    // <div
-    //   style={{
-    //     display: 'flex',
-    //     minHeight: '100vh',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //   }}
-    // >
     <Select
       style={{
         backgroundColor: 'white',
@@ -61,15 +49,15 @@ function BasicSelect() {
         lineHeight: '16px',
         fontWeight: 600,
       }}
+      handleClose={() => setShowMentions(false)}
       isOpen={showMentions}
       triggerRef={triggerRef}
-      handleChange={(item: any) => console.log('selected item', item)}
     >
       <Textarea
         value={text}
         ref={triggerRef}
         placeholder='Type your comment...'
-        onChange={handleDebounceInputChange}
+        onChange={handleTextChange}
       />
       <SelectOptions
         offset={10}
@@ -81,7 +69,7 @@ function BasicSelect() {
           return (
             <SelectItem
               key={index}
-              value='name'
+              value={name}
               onClick={() => handleSelectUser(name)}
             >
               <div style={{ display: 'flex', gap: 8 }}>
@@ -116,8 +104,7 @@ function BasicSelect() {
         })}
       </SelectOptions>
     </Select>
-    // </div>
   );
-}
+};
 
-export default BasicSelect;
+export { MentionDropdown };

@@ -9,11 +9,11 @@ import {
   AudioRecorderTime,
   AudioRecorderDelete,
   CommentCard,
+  MentionDropdown,
 } from '@/components/composite';
 import {
   Button,
   Divider,
-  Textarea,
   Icon,
   Select,
   SelectText,
@@ -35,12 +35,11 @@ import {
   Video,
   XCircle,
 } from 'lucide-react';
-import React, { useRef, useState } from 'react';
-import BasicMention from './BasicMention';
-import BasicSelect from './BasicSelect';
+import React, { useEffect, useRef, useState } from 'react';
 
 function BasicExample() {
   const [visible, setVisible] = useState(false);
+  const [mentions, setMentions] = useState<any>([]);
 
   const [showAudioRecording, setShowAudioRecording] = useState(false);
 
@@ -49,6 +48,16 @@ function BasicExample() {
   const handleClose = () => {
     setVisible(false);
   };
+
+  useEffect(() => {
+    const userMentions = [
+      'Kate Petrokhalko',
+      'Kate Petrokhalko',
+      'Kate Petrokhalko',
+      'Kate Petrokhalko',
+    ];
+    setMentions(userMentions);
+  }, []);
 
   return (
     <div
@@ -83,7 +92,9 @@ function BasicExample() {
                   lineHeight: '16px',
                   fontWeight: 600,
                 }}
-                handleChange={(item: any) => console.log('selected item', item)}
+                handleChange={(item: any) =>
+                  console.log('Selected Value: ', item)
+                }
               >
                 <SelectText dropDownIconSize={16}>
                   <Icon as={Circle} size={16} />
@@ -135,7 +146,9 @@ function BasicExample() {
                   lineHeight: '16px',
                   fontWeight: 600,
                 }}
-                handleChange={(text: string) => console.log('text', text)}
+                handleChange={(text: string) =>
+                  console.log('Selected Value: ', text)
+                }
               >
                 <SelectText dropDownIconSize={16}>
                   <Icon as={FlagIcon} size={16} />
@@ -240,8 +253,10 @@ function BasicExample() {
                 flexDirection: 'column',
               }}
             >
-              {/* <Textarea placeholder='Comment or record' /> */}
-              <BasicSelect />
+              <MentionDropdown
+                mentions={mentions}
+                handleTextChange={(text: string) => console.log(text)}
+              />
               {showAudioRecording && (
                 <AudioRecorder>
                   <AudioRecorderTrigger />
