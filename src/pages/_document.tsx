@@ -18,6 +18,12 @@ export default function Document() {
       <Head />
       <body>
         <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
+        <script
+          id='superflowToolbarScript'
+          data-sf-platform='manual'
+          async
+          src='https://cdn.jsdelivr.net/npm/@usesuperflow/toolbar/superflow.min.js?apiKey=SoNazk1CobX8QnhENUBL&projectId=4747974572217089'
+        ></script>
         <Main />
         <NextScript />
       </body>
